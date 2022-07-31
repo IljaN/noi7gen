@@ -17,20 +17,6 @@ type DelayFilter struct {
 	leftDelayed   *ring.Ring
 }
 
-func DelayFilterParams(time, factor, feedback float64) *DelayFilter {
-	return &DelayFilter{
-		LeftTime:      time,
-		LeftFactor:    factor,
-		LeftFeedback:  feedback,
-		RightTime:     time,
-		RightFactor:   factor,
-		RightFeedback: feedback,
-		rightDelayed:  nil,
-		leftDelayed:   nil,
-	}
-
-}
-
 func NewDelayFilter(f *DelayFilter) func(buf *audio.FloatBuffer) {
 	return func(buf *audio.FloatBuffer) {
 		isStereo := buf.Format.NumChannels == 2
