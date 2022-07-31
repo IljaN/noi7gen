@@ -18,7 +18,7 @@ func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	for i := 0; i < 1; i++ {
+	for i := 0; i < 50; i++ {
 
 		s := inst.New(48000, 16, 500000*2)
 
@@ -62,11 +62,12 @@ func main() {
 		)
 
 		fileName := fmt.Sprintf("gen_%d.wav", i)
+
 		if err := encoding.WriteWAV(fileName, out, 16); err != nil {
 			log.Fatal(err)
 		}
 
-		ffplay("gen_0.wav", 48000)
+		fmt.Println(fileName + " generated")
 	}
 
 }
